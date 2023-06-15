@@ -6,11 +6,6 @@ import com.example.gencybersocialmediaapi.Model.User;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/*
- * Persistence for the User
- *
- * @author Connor Bastian, crb1759@rit.edu
- */
 public interface UserDAO {
     //Create a User
     User createUser(User user) throws IOException;
