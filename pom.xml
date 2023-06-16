@@ -8,11 +8,11 @@
 		<version>2.6.2</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.estore.api</groupId>
-	<artifactId>estore-api</artifactId>
+	<groupId>com.gencybersocialmediaapi.api</groupId>
+	<artifactId>gencyber-social-media-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>estore-api</name>
-	<description>API for E-Store</description>
+	<name>gencyber-social-media-api</name>
+	<description>API for the GenCyber Social Media App Activity</description>
 	<properties>
 		<java.version>11</java.version>
 		<jacoco.version>0.8.7</jacoco.version>
@@ -85,7 +85,7 @@
 					</execution>
 				</executions>
 				<configuration>
-					<mainClass>com.estore.api.estoreapi.EstoreApiApplication</mainClass>
+					<mainClass>com.example.gencybersocialmediaapi</mainClass>
 					<arguments>
 
 					</arguments>
@@ -121,7 +121,7 @@
 						<id>controller</id>
 						<configuration>
 							<footer>Controller Tier</footer>
-							<title>E-Store API Controller Tier Test Coverage</title>
+							<title>GenCyber API Controller Tier Test Coverage</title>
 							<outputDirectory>target/site/jacoco/controller</outputDirectory>
 						</configuration>
 						<goals>
@@ -132,7 +132,7 @@
 						<id>persistence</id>
 						<configuration>
 							<footer>Persistence Tier</footer>
-							<title>E-Store API Persistence Tier Test Coverage</title>
+							<title>GenCyber API Persistence Tier Test Coverage</title>
 							<outputDirectory>target/site/jacoco/persistence</outputDirectory>
 						</configuration>
 						<goals>
@@ -143,7 +143,7 @@
 						<id>model</id>
 						<configuration>
 							<footer>Model Tier</footer>
-							<title>E-Store API Model Tier Test Coverage</title>
+							<title>GenCyber Social Media API Model Tier Test Coverage</title>
 							<outputDirectory>target/site/jacoco/model</outputDirectory>
 						</configuration>
 						<goals>

@@ -16,13 +16,13 @@ import java.util.logging.Logger;
 
 @Component
 public class UserFileDAO implements UserDAO {
-    private static final Logger LOG = Logger.getLogger(UserDAO.class.getName());
+    private static final Logger LOG = Logger.getLogger(UserFileDAO.class.getName());
     final Map<String, User> userMap = new HashMap<>();
     private final ObjectMapper objectMapper;
     private final String filename;
     ArrayList<User> userList = new ArrayList<>();
 
-    public UserFileDAO(@Value("${dao.users}") String filename, ObjectMapper objectMapper) throws IOException {
+    public UserFileDAO(@Value("data/users.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
