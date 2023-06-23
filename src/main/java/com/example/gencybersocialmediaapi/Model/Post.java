@@ -8,18 +8,9 @@ public class Post {
     @JsonProperty
     private User user;
     @JsonProperty
-    private int id;
-    @JsonProperty
     private String postContent;
     @JsonProperty
     private Date timeStamp;
-
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
     public String getPostContent() {
         return postContent;
     }

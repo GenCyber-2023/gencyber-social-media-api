@@ -6,6 +6,9 @@ import com.example.gencybersocialmediaapi.Persistence.UserDAO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -79,6 +82,19 @@ public class UserController {
             return new ResponseEntity<>("User updated successfully", HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>("Error updating user", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/{username}")
+    public ResponseEntity<String> delete(@PathVariable String username) {
+        try {
+            boolean deleted = userDAO.deleteUser(username);
+            if (deleted) {
+                return new ResponseEntity<>("User deleted", HttpStatus.OK);
+            }
+            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
+        } catch (IOException e) {
+            return new ResponseEntity<>("Failed to delete user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }

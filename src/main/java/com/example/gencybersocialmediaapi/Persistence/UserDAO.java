@@ -25,4 +25,5 @@ public interface UserDAO {
     ArrayList<User> getUsers(String userInfo) throws IOException;
 
     ArrayList<User> getUsers() throws IOException;
+    boolean deleteUser(String username) throws IOException;
 }

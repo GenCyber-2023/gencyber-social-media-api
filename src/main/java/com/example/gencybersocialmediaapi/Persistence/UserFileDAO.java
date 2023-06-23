@@ -59,6 +59,17 @@ public class UserFileDAO implements UserDAO {
         int randomIndex = random.nextInt(profilePictureURLArray.length);
         return profilePictureURLArray[randomIndex];
     }
+
+    @Override
+    public boolean deleteUser(String username) throws IOException {
+        synchronized (userMap) {
+            if (userMap.containsKey(username)) {
+                userMap.remove(username);
+                return save();
+            }
+            return false;
+        }
+    }
     private boolean save() throws IOException {
         userList = getUsers();
         objectMapper.writeValue(new File(filename), userList);

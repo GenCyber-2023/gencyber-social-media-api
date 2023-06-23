@@ -2,14 +2,18 @@ package com.example.gencybersocialmediaapi.Persistence;
 
 import com.example.gencybersocialmediaapi.Model.Post;
 import com.example.gencybersocialmediaapi.Model.User;
+import com.example.gencybersocialmediaapi.utils.FlatFileOps;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 
@@ -18,13 +22,14 @@ public class PostFileDAO implements PostDAO {
     private static final Logger LOG = Logger.getLogger(PostFileDAO.class.getName());
     private final ObjectMapper objectMapper;
     private final String filename;
-    private final ArrayList<Post> postList = new ArrayList<>();
+    ArrayList<Post> postList = new ArrayList<>();
+    final Map<String, Post> postMap = new HashMap<>();
     private final UserFileDAO userFileDAO;
     public PostFileDAO(@Value("data/posts.json") String filename, ObjectMapper objectMapper, UserFileDAO userFileDAO) throws IOException {
         this.objectMapper = objectMapper;
-        this.userFileDAO = userFileDAO;
         this.filename = filename;
         load();
+        this.userFileDAO = userFileDAO;
     }
     @Override
     public Post createPost(Post post) throws IOException {
@@ -56,12 +61,11 @@ public class PostFileDAO implements PostDAO {
     private void save() throws IOException {
         objectMapper.writeValue(new File(filename), postList);
     }
-    private List<Post> load() throws IOException {
-        File file = new File(filename);
-        if (file.exists()) {
-            return objectMapper.readValue(file, objectMapper.getTypeFactory().constructCollectionType(List.class, Post.class));
-        } else {
-            return new ArrayList<>();
+    private void load() throws IOException {
+        FlatFileOps.ensureDataFileExists(filename, "[{\"User\": {...}, \"samplePostContent\": \"content\", \"timeStamp\": \"sampleTimeStamp\"}]");
+        Post[] posts = objectMapper.readValue(new File(filename), Post[].class);
+        for (Post post : posts) {
+            postMap.put(post.getUsername(), post);
         }
     }
 }

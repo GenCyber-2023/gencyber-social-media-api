@@ -1,1 +1,51 @@
-[{"username":null,"password":null,"profilePhoto":null,"name":null},{"username":"test","password":"test","profilePhoto":null,"name":null},{"username":"testing","password":"testing","profilePhoto":null,"name":null},{"username":"admin","password":"admin","profilePhoto":null,"name":null},{"username":"annas","password":"puppy","profilePhoto":null,"name":"Anna Smith"},{"username":"john123","password":"john","profilePhoto":"https://www.svgrepo.com/show/446519/avatar.svg","name":"John Jacob Jingleheimerschmidt"},{"username":"username","password":"password","profilePhoto":null,"name":null}]
+[
+  {
+    "username": "dreamer42",
+    "password": "dream4ever",
+    "profilePhoto": "https://www.svgrepo.com/show/446519/avatar.svg",
+    "name": "Sofia Wilson",
+    "posts": []
+  },
+  {
+    "username": "John123",
+    "password": "john",
+    "profilePhoto": "https://www.svgrepo.com/show/446474/avatar.svg",
+    "name": "John James Johnson",
+    "posts": null
+  },
+  {
+    "username": "admin",
+    "password": "admin",
+    "profilePhoto": null,
+    "name": null,
+    "posts": null
+  },
+  {
+    "username": "rockstar77",
+    "password": "vanhalen",
+    "profilePhoto": "https://www.svgrepo.com/show/446487/avatar.svg",
+    "name": "Liam Davis",
+    "posts": []
+  },
+  {
+    "username": "flyguy89",
+    "password": "flyhigh",
+    "profilePhoto": "https://www.svgrepo.com/show/446530/avatar.svg",
+    "name": "Ethan Smith",
+    "posts": []
+  },
+  {
+    "username": "sunnydays12",
+    "password": "sunshine23",
+    "profilePhoto": "https://www.svgrepo.com/show/446487/avatar.svg",
+    "name": "Olivia Brown",
+    "posts": []
+  },
+  {
+    "username": "coolcat23",
+    "password": "kittykat",
+    "profilePhoto": "https://www.svgrepo.com/show/446474/avatar.svg",
+    "name": "Alice Washington",
+    "posts": []
+  }
+]

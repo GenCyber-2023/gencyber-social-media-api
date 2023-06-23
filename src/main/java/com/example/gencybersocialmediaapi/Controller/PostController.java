@@ -40,11 +40,11 @@ public class PostController {
     }
 
     @GetMapping("/{username}")
-    public List<Post> getPostsByUser(@PathVariable String username) throws IOException {
+    public ResponseEntity<ArrayList<Post>> getPostsByUser(@PathVariable String username) throws IOException {
         try {
             User user = userDAO.findByUsername(username);
             if (user != null) {
-                return new ResponseEntity<>(postDAO.getPostsByUser(user), HttpStatus.OK).getBody();
+                return new ResponseEntity<>(postDAO.getPostsByUser(user), HttpStatus.OK);
             } else {
                 throw new IOException("User not found");
             }
