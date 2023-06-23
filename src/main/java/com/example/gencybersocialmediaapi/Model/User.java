@@ -2,15 +2,23 @@ package com.example.gencybersocialmediaapi.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
 import java.util.Objects;
 
 public class User {
 
-    public static final String STRING_FORMAT = "[Username: '%s', Password: '%s']";
+    public static final String STRING_FORMAT = "[Username: '%s', Password: '%s', Name: '%s', Picture: '%s']";
     @JsonProperty("username")
     private String username;
     @JsonProperty("password")
     private String password;
+    @JsonProperty("profilePhoto")
+    private String profilePictureURL;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("posts")
+    private List<Post> userPosts;
+
 
     public String getPassword() {
         return password;
@@ -27,13 +35,39 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
+    public String getProfilePictureURL() {
+        return profilePictureURL;
+    }
+
+    public void setProfilePictureURL(String profilePictureURL) {
+        this.profilePictureURL = profilePictureURL;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Post> getUserPosts() {
+        return userPosts;
+    }
+    public void setUserPosts(List<Post> posts) {
+        this.userPosts = posts;
+    }
+
 
     @Override
     public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+        return "User Info = { " +
+                "Username: " + username + "\n" +
+                "Password: " + password + '\n' +
+                "Name: " + name + '\n' +
+                "ProfilePhotoURL: " + profilePictureURL + "\n" +
+                "Posts: " + userPosts + "\n" +
+                " }";
     }
 
     @Override

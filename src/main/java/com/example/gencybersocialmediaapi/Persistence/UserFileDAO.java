@@ -1,5 +1,6 @@
 package com.example.gencybersocialmediaapi.Persistence;
 
+import com.example.gencybersocialmediaapi.Model.Post;
 import com.example.gencybersocialmediaapi.Model.User;
 import com.example.gencybersocialmediaapi.utils.FlatFileOps;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,9 +10,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.logging.Logger;
 
 @Component
@@ -27,6 +26,15 @@ public class UserFileDAO implements UserDAO {
         this.objectMapper = objectMapper;
         load();
     }
+    private static final String[] profilePictureURLArray = {
+            "https://www.svgrepo.com/show/446530/avatar.svg",
+            "https://www.svgrepo.com/show/446474/avatar.svg",
+            "https://www.svgrepo.com/show/446487/avatar.svg",
+            "https://www.svgrepo.com/show/446476/avatar-portrait.svg",
+            "https://www.svgrepo.com/show/446519/avatar.svg",
+            "https://www.svgrepo.com/show/446514/avatar.svg",
+            "https://www.svgrepo.com/show/446485/avatar.svg",
+    };
     @Override
     public User createUser(User inputUser) throws IOException {
         synchronized (userMap) {
@@ -34,12 +42,22 @@ public class UserFileDAO implements UserDAO {
                 throw new FileAlreadyExistsException("Username already exists");
             }
             User newUser = new User();
+            String randomProfilePictureURL = getRandomProfilePictureURL();
+            List<Post> userPosts = new ArrayList<>();
             newUser.setUsername(inputUser.getUsername());
             newUser.setPassword(inputUser.getPassword());
+            newUser.setName(inputUser.getName());
+            newUser.setProfilePictureURL(randomProfilePictureURL);
+            newUser.setUserPosts(userPosts);
             userMap.put(newUser.getUsername(), newUser);
             save();
             return newUser;
         }
+    }
+    private String getRandomProfilePictureURL() {
+        Random random = new Random();
+        int randomIndex = random.nextInt(profilePictureURLArray.length);
+        return profilePictureURLArray[randomIndex];
     }
     private boolean save() throws IOException {
         userList = getUsers();
@@ -61,6 +79,7 @@ public class UserFileDAO implements UserDAO {
             User currentUser = userMap.get(updateUser.getUsername());
             if (updateUser.getUsername() != null) currentUser.setUsername(updateUser.getUsername());
             if (updateUser.getPassword() != null) currentUser.setPassword(updateUser.getPassword());
+            if (updateUser.getUserPosts() != null) currentUser.setUserPosts(updateUser.getUserPosts());
 
             userMap.put(currentUser.getUsername(), currentUser);
             save();
