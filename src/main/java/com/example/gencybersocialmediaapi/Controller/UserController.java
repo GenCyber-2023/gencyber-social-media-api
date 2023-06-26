@@ -85,18 +85,6 @@ public class UserController {
         }
     }
 
-    @DeleteMapping("/{username}")
-    public ResponseEntity<String> delete(@PathVariable String username) {
-        try {
-            boolean deleted = userDAO.deleteUser(username);
-            if (deleted) {
-                return new ResponseEntity<>("User deleted", HttpStatus.OK);
-            }
-            return new ResponseEntity<>("User not found", HttpStatus.NOT_FOUND);
-        } catch (IOException e) {
-            return new ResponseEntity<>("Failed to delete user", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
 }
     
 

@@ -1,6 +1,5 @@
 package com.example.gencybersocialmediaapi.Persistence;
 
-import com.example.gencybersocialmediaapi.Model.Post;
 import com.example.gencybersocialmediaapi.Model.User;
 import com.example.gencybersocialmediaapi.utils.FlatFileOps;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +18,7 @@ public class UserFileDAO implements UserDAO {
     final Map<String, User> userMap = new HashMap<>();
     private final ObjectMapper objectMapper;
     private final String filename;
+
     ArrayList<User> userList = new ArrayList<>();
 
     public UserFileDAO(@Value("data/users.json") String filename, ObjectMapper objectMapper) throws IOException {
@@ -43,12 +43,11 @@ public class UserFileDAO implements UserDAO {
             }
             User newUser = new User();
             String randomProfilePictureURL = getRandomProfilePictureURL();
-            List<Post> userPosts = new ArrayList<>();
+            List<String> userPosts = new ArrayList<>();
             newUser.setUsername(inputUser.getUsername());
             newUser.setPassword(inputUser.getPassword());
             newUser.setName(inputUser.getName());
             newUser.setProfilePictureURL(randomProfilePictureURL);
-            newUser.setUserPosts(userPosts);
             userMap.put(newUser.getUsername(), newUser);
             save();
             return newUser;
@@ -60,16 +59,6 @@ public class UserFileDAO implements UserDAO {
         return profilePictureURLArray[randomIndex];
     }
 
-    @Override
-    public boolean deleteUser(String username) throws IOException {
-        synchronized (userMap) {
-            if (userMap.containsKey(username)) {
-                userMap.remove(username);
-                return save();
-            }
-            return false;
-        }
-    }
     private boolean save() throws IOException {
         userList = getUsers();
         objectMapper.writeValue(new File(filename), userList);
@@ -90,7 +79,6 @@ public class UserFileDAO implements UserDAO {
             User currentUser = userMap.get(updateUser.getUsername());
             if (updateUser.getUsername() != null) currentUser.setUsername(updateUser.getUsername());
             if (updateUser.getPassword() != null) currentUser.setPassword(updateUser.getPassword());
-            if (updateUser.getUserPosts() != null) currentUser.setUserPosts(updateUser.getUserPosts());
 
             userMap.put(currentUser.getUsername(), currentUser);
             save();
@@ -125,8 +113,8 @@ public class UserFileDAO implements UserDAO {
         }
         return userArrayList;
     }
-    private void load() throws IOException {
 
+    private void load() throws IOException {
         FlatFileOps.ensureDataFileExists(filename, "[{\"username\": \"admin\", \"password\": \"admin\"}]");
         User[] users = objectMapper.readValue(new File(filename), User[].class);
         for (User user : users) {

@@ -1,6 +1,7 @@
 package com.example.gencybersocialmediaapi.Persistence;
 
 
+import com.example.gencybersocialmediaapi.Model.Post;
 import com.example.gencybersocialmediaapi.Model.User;
 
 import java.io.IOException;
@@ -25,5 +26,4 @@ public interface UserDAO {
     ArrayList<User> getUsers(String userInfo) throws IOException;
 
     ArrayList<User> getUsers() throws IOException;
-    boolean deleteUser(String username) throws IOException;
 }

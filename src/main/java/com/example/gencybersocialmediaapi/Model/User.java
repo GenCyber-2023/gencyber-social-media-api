@@ -16,8 +16,6 @@ public class User {
     private String profilePictureURL;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("posts")
-    private List<Post> userPosts;
 
 
     public String getPassword() {
@@ -51,14 +49,6 @@ public class User {
         this.name = name;
     }
 
-    public List<Post> getUserPosts() {
-        return userPosts;
-    }
-    public void setUserPosts(List<Post> posts) {
-        this.userPosts = posts;
-    }
-
-
     @Override
     public String toString() {
         return "User Info = { " +
@@ -66,7 +56,7 @@ public class User {
                 "Password: " + password + '\n' +
                 "Name: " + name + '\n' +
                 "ProfilePhotoURL: " + profilePictureURL + "\n" +
-                "Posts: " + userPosts + "\n" +
+                "Posts: " +
                 " }";
     }
 

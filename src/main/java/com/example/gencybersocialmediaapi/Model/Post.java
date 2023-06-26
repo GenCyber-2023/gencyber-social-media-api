@@ -2,15 +2,12 @@ package com.example.gencybersocialmediaapi.Model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Date;
-
 public class Post {
-    @JsonProperty
-    private User user;
-    @JsonProperty
+    @JsonProperty("Username")
+    private String username;
+    @JsonProperty("Post Content")
     private String postContent;
-    @JsonProperty
-    private Date timeStamp;
+
     public String getPostContent() {
         return postContent;
     }
@@ -18,20 +15,9 @@ public class Post {
         this.postContent = text;
     }
     public String getUsername() {
-        if (user != null) {
-            return user.getUsername();
-        }
-        else {
-            return null;
-        }
+        return username;
     }
-    public void setUser (User user) {
-        this.user = user;
-    }
-    public Date getTimeStamp() {
-        return timeStamp;
-    }
-    public void setTimeStamp(Date timeStamp) {
-        this.timeStamp = timeStamp;
+    public void setUsername (String username) {
+        this.username = username;
     }
 }

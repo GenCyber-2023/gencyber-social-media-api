@@ -10,8 +10,7 @@ import java.util.List;
 
 @Component
 public interface PostDAO {
-    Post createPost(Post post) throws IOException;
-    ArrayList<Post> getPostsByUser(User user);
-    ArrayList<Post> getAllPosts();
-
+    ArrayList<Post> getPostsByUser(User user) throws IOException;
+    ArrayList<Post> getAllPosts() throws IOException;
+    Post createPost(String username, String postContent) throws IOException;
 }
