@@ -37,7 +37,7 @@ public class PostController {
         }
     }
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<ArrayList<Post>> getAllPosts() throws IOException {
         ArrayList<Post> postList = postDAO.getAllPosts();
         return new ResponseEntity<>(postList, HttpStatus.OK);

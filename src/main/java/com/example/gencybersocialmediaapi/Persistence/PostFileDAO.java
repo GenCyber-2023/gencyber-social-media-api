@@ -39,14 +39,14 @@ public class PostFileDAO implements PostDAO {
         return userPosts;
     }
     @Override
-    public Post createPost(String username, String postContent) throws IOException {
+    public void createPost(String username, String postContent) throws IOException {
         synchronized (postList) {
             Post post = new Post();
             post.setUsername(username);
             post.setPostContent(postContent);
             postList.add(post);
             save();
-            return post;
+            load();
         }
     }
 
