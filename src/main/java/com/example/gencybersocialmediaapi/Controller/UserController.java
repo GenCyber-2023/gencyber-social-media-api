@@ -23,10 +23,10 @@ public class UserController {
         this.userDAO = userDao;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<ArrayList<User>> getUsers(String userInfo) {
+    @GetMapping("/getAll")
+    public ResponseEntity<ArrayList<User>> getUsers() {
         try {
-            ArrayList<User> userList = userDAO.getUsers(userInfo);
+            ArrayList<User> userList = userDAO.getUsers();
             return new ResponseEntity<>(userList, HttpStatus.OK);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -75,7 +75,7 @@ public class UserController {
         }
     }
 
-    @PutMapping("")
+    @PutMapping("/update")
     public ResponseEntity<String> updateUser(@RequestBody User user) {
         try {
             userDAO.updateUser(user);

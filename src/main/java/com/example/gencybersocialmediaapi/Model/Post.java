@@ -3,9 +3,9 @@ package com.example.gencybersocialmediaapi.Model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Post {
-    @JsonProperty("Username")
+    @JsonProperty("username")
     private String username;
-    @JsonProperty("Post Content")
+    @JsonProperty("postContent")
     private String postContent;
 
     public String getPostContent() {

@@ -26,8 +26,10 @@ public class PostController {
     @PostMapping("/{username}/create")
     public ResponseEntity<Post> createPost(@PathVariable String username, @RequestBody Post post) throws IOException {
         try {
-            Post newPost = postDAO.createPost(post.getUsername(), post.getPostContent());
-            return new ResponseEntity<>(newPost, HttpStatus.CREATED);
+            Post newPost = new Post();
+            newPost.setUsername(username);
+            newPost.setPostContent(post.getPostContent());
+            return new ResponseEntity<>(postDAO.createPost(newPost), HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

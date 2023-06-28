@@ -22,7 +22,7 @@ public class PostFileDAO implements PostDAO {
     private final String filename;
     final ArrayList<Post> postList = new ArrayList<>();
 
-    public PostFileDAO(@Value("data/postList.json") String filename, ObjectMapper objectMapper) throws IOException {
+    public PostFileDAO(@Value("data/posts.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.objectMapper = objectMapper;
         this.filename = filename;
         load();
@@ -39,15 +39,14 @@ public class PostFileDAO implements PostDAO {
         return userPosts;
     }
     @Override
-    public Post createPost(String username, String postContent) throws IOException {
+    public Post createPost(Post post) throws IOException {
         synchronized (postList) {
-            Post post = new Post();
-            post.setUsername(username);
-            post.setPostContent(postContent);
+            Post newPost = new Post();
+            newPost.setUsername(post.getUsername());
+            newPost.setPostContent(post.getPostContent());
             postList.add(post);
-            load();
             save();
-            return post;
+            return newPost;
         }
     }
 
