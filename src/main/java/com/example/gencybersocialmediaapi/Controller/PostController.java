@@ -24,13 +24,9 @@ public class PostController {
         this.postDAO = postDAO;
     }
     @PostMapping("/{username}/create")
-    public ResponseEntity<Post> createPost(@PathVariable String username, @RequestBody String postContent) throws IOException {
+    public ResponseEntity<Post> createPost(@PathVariable String username, @RequestBody Post post) throws IOException {
         try {
-            postContent = postContent.replaceAll("\"postContent\":\\s*", "")
-                    .replaceAll("[{}\"]", "")
-                    .replaceAll("\\\\n", "")
-                    .trim();
-            Post newPost = postDAO.createPost(username, postContent);
+            Post newPost = postDAO.createPost(post.getUsername(), post.getPostContent());
             return new ResponseEntity<>(newPost, HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
