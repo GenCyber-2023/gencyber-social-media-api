@@ -21,7 +21,7 @@ public class UserFileDAO implements UserDAO {
 
     ArrayList<User> userList = new ArrayList<>();
 
-    public UserFileDAO(@Value("data/users.json") String filename, ObjectMapper objectMapper) throws IOException {
+    public UserFileDAO(@Value("data/userList.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
@@ -115,7 +115,7 @@ public class UserFileDAO implements UserDAO {
     }
 
     private void load() throws IOException {
-        FlatFileOps.ensureDataFileExists(filename, "[{\"username\": \"admin\", \"password\": \"admin\"}]");
+        FlatFileOps.ensureDataFileExists(filename, "[]");
         User[] users = objectMapper.readValue(new File(filename), User[].class);
         for (User user : users) {
             userMap.put(user.getUsername(), user);

@@ -13,5 +13,5 @@ public interface PostDAO {
     ArrayList<Post> getPostsByUser(User user) throws IOException;
     ArrayList<Post> getAllPosts() throws IOException;
     Post createPost(Post post) throws IOException;
-
+    boolean deletePostByUsername(String username) throws IOException;
 }

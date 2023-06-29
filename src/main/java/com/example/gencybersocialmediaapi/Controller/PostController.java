@@ -56,4 +56,15 @@ public class PostController {
             throw new RuntimeException("Could not retrieve posts");
         }
     }
+
+    @DeleteMapping("/{username}/delete")
+    public ResponseEntity<String> deletePost(@PathVariable String username) {
+        try {
+            postDAO.deletePostByUsername(username);
+            return new ResponseEntity<>("Post deleted successfully", HttpStatus.OK);
+
+        } catch (IOException e) {
+            return new ResponseEntity<>("Failed to delete post", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
