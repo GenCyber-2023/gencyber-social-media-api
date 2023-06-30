@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 
 
 @RestController
@@ -36,8 +37,8 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<ArrayList<Post>> getAllPosts() throws IOException {
-        ArrayList<Post> postList = postDAO.getAllPosts();
+    public ResponseEntity<Stack<Post>> getAllPosts() throws IOException {
+        Stack<Post> postList = postDAO.getAllPosts();
         return new ResponseEntity<>(postList, HttpStatus.OK);
     }
 

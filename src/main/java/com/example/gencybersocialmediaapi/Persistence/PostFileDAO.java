@@ -19,7 +19,7 @@ public class PostFileDAO implements PostDAO {
     private static final Logger LOG = Logger.getLogger(PostFileDAO.class.getName());
     private final ObjectMapper objectMapper;
     private final String filename;
-    final ArrayList<Post> postList = new ArrayList<>();
+    final Stack<Post> postList = new Stack<>();
 
     public PostFileDAO(@Value("data/postList.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.objectMapper = objectMapper;
@@ -50,7 +50,7 @@ public class PostFileDAO implements PostDAO {
     }
 
     @Override
-    public ArrayList<Post> getAllPosts() {
+    public Stack<Post> getAllPosts() {
         return postList;
     }
 
