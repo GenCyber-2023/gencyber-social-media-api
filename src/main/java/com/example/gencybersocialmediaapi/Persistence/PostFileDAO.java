@@ -21,7 +21,7 @@ public class PostFileDAO implements PostDAO {
     private final String filename;
     final Stack<Post> postList = new Stack<>();
 
-    public PostFileDAO(@Value("data/postList.json") String filename, ObjectMapper objectMapper) throws IOException {
+    public PostFileDAO(@Value("data/posts.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.objectMapper = objectMapper;
         this.filename = filename;
         load();

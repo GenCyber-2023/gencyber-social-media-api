@@ -50,6 +50,7 @@ public class UserFileDAO implements UserDAO {
             newUser.setProfilePictureURL(randomProfilePictureURL);
             userMap.put(newUser.getUsername(), newUser);
             save();
+            load();
             return newUser;
         }
     }
@@ -82,6 +83,7 @@ public class UserFileDAO implements UserDAO {
 
             userMap.put(currentUser.getUsername(), currentUser);
             save();
+            load();
             return currentUser;
         }
     }
