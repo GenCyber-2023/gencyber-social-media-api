@@ -30,6 +30,9 @@ public class PostController {
             Post newPost = new Post();
             newPost.setUsername(username);
             newPost.setPostContent(post.getPostContent());
+            if (post.getPhotoURL() != null) {
+                newPost.setPhotoURL(post.getPhotoURL());
+            }
             return new ResponseEntity<>(postDAO.createPost(newPost), HttpStatus.CREATED);
         } catch (IOException e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

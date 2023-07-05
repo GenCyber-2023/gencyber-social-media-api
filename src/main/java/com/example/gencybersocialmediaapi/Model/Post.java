@@ -8,6 +8,9 @@ public class Post {
     @JsonProperty("postContent")
     private String postContent;
 
+    @JsonProperty("photoURL")
+    private String photoURL;
+
     public String getPostContent() {
         return postContent;
     }
@@ -19,5 +22,11 @@ public class Post {
     }
     public void setUsername (String username) {
         this.username = username;
+    }
+    public String getPhotoURL(){
+        return photoURL;
+    }
+    public void setPhotoURL(String photoURL) {
+        this.photoURL = photoURL;
     }
 }

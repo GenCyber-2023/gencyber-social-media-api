@@ -43,6 +43,9 @@ public class PostFileDAO implements PostDAO {
             Post newPost = new Post();
             newPost.setUsername(post.getUsername());
             newPost.setPostContent(post.getPostContent());
+            if (post.getPhotoURL() != null) {
+                newPost.setPhotoURL(post.getPhotoURL());
+            }
             postList.add(post);
             save();
             return newPost;
