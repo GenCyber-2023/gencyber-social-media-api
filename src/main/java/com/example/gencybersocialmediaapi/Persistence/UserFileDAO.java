@@ -21,7 +21,7 @@ public class UserFileDAO implements UserDAO {
 
     ArrayList<User> userList = new ArrayList<>();
 
-    public UserFileDAO(@Value("data/userList.json") String filename, ObjectMapper objectMapper) throws IOException {
+    public UserFileDAO(@Value("data/finalUserList.json") String filename, ObjectMapper objectMapper) throws IOException {
         this.filename = filename;
         this.objectMapper = objectMapper;
         load();
